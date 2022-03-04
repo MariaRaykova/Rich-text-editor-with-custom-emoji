@@ -4,11 +4,13 @@ import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import quillEmoji from "react-quill-emoji";
 import "react-quill-emoji/dist/quill-emoji.css";
+import ToolbarEmoji from "./ToolbarEmoji";
+import EmojiBlot from "./EmojiBlot";
 
 Quill.register(
   {
-    "formats/emoji": quillEmoji.EmojiBlot,
-    "modules/emoji-toolbar": quillEmoji.ToolbarEmoji,
+    "formats/emoji": EmojiBlot,
+    "modules/emoji-toolbar": ToolbarEmoji,
     "modules/emoji-shortname": quillEmoji.ShortNameEmoji
   },
   true
