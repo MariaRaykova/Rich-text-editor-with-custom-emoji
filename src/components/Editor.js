@@ -28,6 +28,7 @@ function Editor() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setText(value);
+    setValue("");
   };
   return (
     <Row gutter={[48, 48]}>
