@@ -20,7 +20,7 @@ function Editor() {
   const [text, setText] = useState("");
   let editorRef;
   const toolbarOptions = {
-    container: [["emoji"]]
+    container: [["bold", "italic", "emoji"]]
   };
   const modules = {
     toolbar: toolbarOptions,

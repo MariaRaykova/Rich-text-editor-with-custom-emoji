@@ -33,8 +33,7 @@ class ToolbarEmoji extends Module {
 }
 
 ToolbarEmoji.DEFAULTS = {
-  buttonIcon:
-    '<svg viewbox="0 0 18 18"><circle class="ql-fill" cx="7" cy="7" r="1"></circle><circle class="ql-fill" cx="11" cy="7" r="1"></circle><path class="ql-stroke" d="M7,10a2,2,0,0,0,4,0H7Z"></path><circle class="ql-stroke" cx="9" cy="9" r="6"></circle></svg>'
+  buttonIcon: `<img src="../../emojis/Web capture_4-3-2022_151530_.jpeg" width="20px" height="20px"  display="inline" alt="sunglasses_cowboy">`
 };
 
 function fn_close() {
@@ -162,11 +161,8 @@ function fn_emojiElementsToPanel(type, panel, quill) {
     span.classList.add("bem-" + emoji.name);
     span.classList.add("ap");
     span.classList.add("ap-" + emoji.name);
-    // let output = "" + emoji.code_decimal + "";
+    span.classList.add("icon");
     span.innerHTML = emoji.code_decimal;
-    // span.innerHTML = `<img src="../../emojis/Web capture_4-3-2022_151331_.jpeg"Web capture_4-3-2022_151553_.jpeg" width="35px" height="35px" alt="sunglasses_cowboy">`;
-    //span.innerHTML = `<img src="https://emoji.gg/assets/emoji/8507_sunglasses_cowboy.png" width="35px" height="35px" alt="sunglasses_cowboy">`;
-    // span.innerHTML = output + " ";
     panel.appendChild(span);
 
     let customButton = document.querySelector(".bem-" + emoji.name);
@@ -177,21 +173,13 @@ function fn_emojiElementsToPanel(type, panel, quill) {
           innerHTML: emoji.code_decimal
           //innerHTML: "" + emoji.code_decimal + " "
         });
+
         let editorSelection = quill.getSelection();
         const cursorPosition =
           editorSelection && editorSelection.index ? editorSelection.index : 0;
-        console.log(cursorPosition);
-        // quill.insertEmbed(cursorPosition, "emoji", emoji, Quill.sources.USER);
-        quill.insertEmbed(cursorPosition, "emoji", emoji, Quill.sources.USER);
-        let newPosition = cursorPosition + 1;
-        quill.insertText(newPosition, " ");
-        console.log("index " + newPosition);
-        quill.setSelection(newPosition);
+        quill.insertEmbed(cursorPosition, "emoji", emoji);
+        quill.setSelection(cursorPosition + 0.5);
 
-        // quill.insertEmbed(range.index, "emoji", emoji, Quill.sources.USER);
-        // quill.setSelection(range.index + 1);
-
-        //setTimeout(() => quill.setSelection(range.index + 1), 0);
         fn_close();
       });
     }

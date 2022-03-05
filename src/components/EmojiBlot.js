@@ -1,12 +1,14 @@
-import Parchment from "parchment";
 import Quill from "quill";
 import emojiMap from "./emojiMap";
 
-var Embed = Quill.import("blots/block/embed");
+var Embed = Quill.import("blots/embed");
+
 class EmojiBlot extends Embed {
   static create(value) {
     let node = super.create();
+    //important!!!
     node.setAttribute("contenteditable", true);
+    node.setAttribute("tabIndex", -1);
     if (typeof value === "object") {
       EmojiBlot.buildSpan(value, node);
     } else if (typeof value === "string") {
@@ -29,16 +31,9 @@ class EmojiBlot extends Embed {
     let emojiSpan = document.createElement("span");
     emojiSpan.classList.add(this.emojiClass);
     emojiSpan.classList.add(this.emojiPrefix + value.name);
-    // unicode can be '1f1f5-1f1ea',see emoji-list.js.
-    // emojiSpan.innerText = String.fromCodePoint(
-    //   ...EmojiBlot.parseUnicode(value.unicode)
-    // );
     emojiSpan.innerHTML = value.code_decimal;
     node.appendChild(emojiSpan);
   }
-  // static parseUnicode(string) {
-  //   return string.split("-").map((str) => parseInt(str, 16));
-  // }
 }
 
 EmojiBlot.blotName = "emoji";
